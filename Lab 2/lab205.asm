@@ -1,0 +1,21 @@
+.model tiny
+.486
+.data
+ARRAY1 DD 11111111h, 22222222h, 33333333h, 44444444h, 55555555h, 66666666h, 77777777h, 88888888h, 99999999h, 0AAAAAAAAh
+ORG ARRAY1 + 20
+ARRAY2 DD ?
+COUNT EQU 10
+
+.code
+.startup
+        LEA ESI, ARRAY1
+        LEA EDI, ARRAY2
+        MOV CL, COUNT
+    X1: MOV EAX, [ESI]
+        MOV [EDI], EAX
+        ADD ESI, 4h
+        ADD EDI, 4h
+        DEC CL
+        JNZ X1
+.exit
+end
