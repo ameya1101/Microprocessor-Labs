@@ -7,8 +7,8 @@ red     db  0Ch
 green   db  0Ah
 strow   dw  0
 stcol   dw  0
-enrow   dw  250
-encol   dw  150
+enrow   dw  220
+encol   dw  220
 count   db  3
 
 .code
@@ -45,8 +45,8 @@ X1:
 
         ADD strow, 20
         ADD stcol, 20
-        SUB enrow, 40
-        SUB encol, 40
+        SUB enrow, 20
+        SUB encol, 20
 
         MOV DX, strow
 X3:     MOV CX, stcol
@@ -66,8 +66,8 @@ X4:
 
         ADD stcol, 20
         ADD strow, 20
-        SUB enrow, 40
-        SUB encol, 40
+        SUB enrow, 20
+        SUB encol, 20
         DEC BYTE PTR[count]
         JNZ X
 
