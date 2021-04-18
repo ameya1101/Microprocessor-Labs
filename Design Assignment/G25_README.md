@@ -19,7 +19,7 @@ The task is to design a device used for testing the sobriety of a person.
 ### Detailed Working
 
 - When the Start button is pressed, a random time delay is generated after which the bottom-most LED lights up.
-- After a 50ms time interval, the bottom-most and the next-highest LED both light up. After another 50ms delay, the three bottom LEDs light up. The process continues until either the Stop button is pressed (in which case the LEDs stop rising) or when all the LEDs are lit.
+- After a 50ms time interval, the bottom-most and the next-highest LED both light up. After another 50ms delay, the three bottom LEDs light up. This process continues until either the Stop button is pressed (in which case the LEDs stop rising) or when all the LEDs are lit.
 - The program must also check the STOP button just before lighting the bottom LED to ensure the user isn't cheating by holding the STOP button continually. If the user tries to cheat, blink all LEDs several times and simply go back to the start (waiting once again for the START button).
 - The sobriety of a person on a scale of 1-5 (1 indicating maximum intoxication) has to be displayed on a seven-segment display.
 

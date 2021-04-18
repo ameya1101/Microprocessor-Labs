@@ -70,9 +70,9 @@ INIT:   CLI
         ; Port A: Mode 0 Output
         ; PA0 - PA4: 7 Segment display
         ; Port B: Mode 0 Output       
-        ; PB0 - PB7: LEDs 9 to 1
+        ; PB0 - PB7: LEDs 2 to 9
         ; Port C Upper: Input  
-        ; PC0: LED 0
+        ; PC0: LED 1
         ; Port C Lower: Output
         ; PC4: Start
         ; PC5: Stop
@@ -192,8 +192,6 @@ STOP_ISR:
                 IN AL, 04h
                 OR AL, 00000001b
                 OUT 04h, AL 
-        OUT 04h, AL 
-                OUT 04h, AL 
                 
                 MOV AL, 0FFh
                 OUT 02h, AL
@@ -207,13 +205,9 @@ STOP_ISR:
                 ; Turn OFF all LEDs
                 IN AL, 04h
                 AND AL, 0F0h
-                OUT 04h, AL 
-        OUT 04h, AL 
-                OUT 04h, AL 
+                OUT 04h, AL
                 
                 MOV AL, 0
-                OUT 02h, AL       
-        OUT 02h, AL       
                 OUT 02h, AL       
                                 
                 ; 240ms delay
@@ -353,7 +347,9 @@ START_ISR:
           
         ; Exit if C4 is OFF
         CMP AL, 0
-        JE END_START_ISR
+        JE END_START_ISR   
+        
+        ; END OF DEBOUNCE
         
         ; Check system state      
         ; If random counting, exit
