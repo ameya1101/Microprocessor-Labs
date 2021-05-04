@@ -104,8 +104,8 @@ INIT:   CLI
         ; C0 CW: 00010100b = 14h (C0, write LSB, mode 2, binary)
         MOV AL, 14h
         OUT 0Eh, AL
-        ; LSB for C0: 161d = A1h
-        MOV AL, 0A1h
+        ; LSB for C0: 160d = A0h
+        MOV AL, 160d
         OUT 08h, AL  
         
         ; C1 CW: 01110100b = 74h (C1, write LSB and MSB, mode 2, binary)
@@ -276,8 +276,8 @@ C2_ISR:
         OUT 0Eh, AL
         
         ; Start C2
-        MOV AL, 2
-        OUT 0Ch, AL
+        MOV AL, 1      ; For counting two cycles of C1
+        OUT 0Ch, AL    ; to generate a regular 50ms interrupt
         MOV AL, 0
         OUT 0Ch, AL     
                       
@@ -382,8 +382,8 @@ START_ISR:
         ; C0 CW: 00010100b = 14h (C0, write LSB, mode 2, binary)
         MOV AL, 14h
         OUT 0Eh, AL
-        ; LSB for C0: 161d = A1h
-        MOV AL, 0A1h
+        ; LSB for C0: 160d = A0h
+        MOV AL, 0A0h
         OUT 08h, AL                          
         
         ; START C1        
@@ -397,8 +397,8 @@ START_ISR:
         ; C2 CW: 10110100b = B4h (C2, write LSB and MSB, mode 2, binary)
         MOV AL, 0B4h
         OUT 0Eh, AL
-        MOV AX, 159d
-        ADD AX, BX      ; C2 value is 159d + C0 readout
+        MOV AX, 160d     ; 160d
+        ADD AX, BX       ; C2 value is 160d + C0 readout
         OUT 0Ch, AL
         MOV AL, AH
         OUT 0Ch, AL 
